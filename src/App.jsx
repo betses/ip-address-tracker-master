@@ -1,5 +1,4 @@
 import './App.css';
-import arrow from './assets/icon-arrow.svg';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 function App() {
@@ -31,7 +30,27 @@ function App() {
             </button>
           </div>
         </form>
+        <div className="w-[calc(100%-3rem);] max-w-[69.375rem] text-center bg-white py-6 rounded-[.938rem] grid md:grid-cols-4 gap-6 leading-4 absolute top-[100%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+          {[
+            ['IP Address', '196.191.221.239'],
+            ['Location', 'Gelemso, Oromiya Region'],
+            ['Timezone', 'UTC +03:00'],
+            ['ISP', 'EthioNet'],
+          ].map(([title, adress]) => (
+            <div className="flex flex-col gap-2">
+              <h2 className="uppercase tracking-[1.46px] font-bold text-[clamp(.625rem,.5449rem+.3419vw,.75rem);] text-[#969696]">
+                {title}
+              </h2>
+              <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] ">
+                {adress}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
+      <MapContainer center={[48.8566, 2.3522]} zoom={13} className="h-screen">
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      </MapContainer>
     </div>
   );
 }
