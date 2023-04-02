@@ -1,7 +1,12 @@
 import './App.css';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { Icon } from 'leaflet';
 function App() {
+  const customIcon = new Icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/3179/3179068.png',
+    iconSize: [40, 40],
+  });
   return (
     <div>
       <div className="grid relative items-center justify-items-center z-[1000] w-full bg-no-repeat bg-center bg-mobileBG md:bg-desktopBG bg-cover">
@@ -40,7 +45,10 @@ function App() {
             ['Timezone', 'UTC +03:00'],
             ['ISP', 'EthioNet'],
           ].map(([title, adress]) => (
-            <div className="flex flex-col gap-2 md:px-8 md:gap-[.875rem] md:border-l-[1px]">
+            <div
+              key={title}
+              className="flex flex-col gap-2 md:px-8 md:gap-[.875rem] md:border-l-[1px]"
+            >
               <h2 className="uppercase tracking-[1.46px] font-bold text-[clamp(.625rem,.5449rem+.3419vw,.75rem);] text-[#969696]">
                 {title}
               </h2>
@@ -51,8 +59,13 @@ function App() {
           ))}
         </div>
       </div>
-      <MapContainer center={[48.8566, 2.3522]} zoom={13} className="h-screen">
+      <MapContainer center={[48.8566, 2.3522]} zoom={18} className="h-screen">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <Marker position={[48.8566, 2.3522]} icon={customIcon}>
+          <Popup>
+            <p>This is your location</p>
+          </Popup>
+        </Marker>
       </MapContainer>
     </div>
   );
