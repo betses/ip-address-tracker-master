@@ -2,11 +2,49 @@ import './App.css';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 function App() {
+  const [ip, setIP] = useState('');
+  const [title, setTitle] = useState([
+    ['IP Address', ''],
+    ['Location', ''],
+    ['Timezone', ''],
+    ['ISP', ''],
+  ]);
+  const [loc, setLoc] = useState([]);
   const customIcon = new Icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/3179/3179068.png',
     iconSize: [40, 40],
   });
+
+  const getIp = async () => {
+    const res = await axios.get('https://geolocation-db.com/json/');
+    setIP(res.data.IPv4);
+    await getDeta(ip);
+  };
+
+  const getDeta = async (ip) => {
+    const response = await fetch(
+      `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_G4dOfeS9VXv6oLfx9mYyh2jjJB5yQ&ipAddress=${ip}`
+    );
+    const jsonData = await response.json();
+    console.log(jsonData);
+    setTitle([
+      ['IP Address', jsonData.ip],
+      ['Location', [jsonData.location.city, ', ', jsonData.location.region]],
+      ['Timezone', ['utc', ' ', jsonData.location.timezone]],
+      ['ISP', jsonData.isp],
+    ]);
+
+    setLoc([jsonData.location.lat, jsonData.location.lng]);
+  };
+
+  useEffect(() => {
+    getIp();
+  }, []);
+
   return (
     <div>
       <div className="grid relative items-center justify-items-center z-[1000] w-full bg-no-repeat bg-center bg-mobileBG md:bg-desktopBG bg-cover">
@@ -39,12 +77,7 @@ function App() {
           </div>
         </form>
         <div className="w-[calc(100%-3rem);] max-w-[69.375rem] text-center mt-[2.875rem] md:mt-0 bg-white py-6 rounded-[.938rem] grid md:grid-cols-4 gap-6 leading-4 absolute top-[100%] left-[50%] -translate-x-[50%] -translate-y-[50%] md:gap-0 md:text-left md:py-[2.375rem]">
-          {[
-            ['IP Address', '196.191.221.239'],
-            ['Location', 'Gelemso, Oromiya Region'],
-            ['Timezone', 'UTC +03:00'],
-            ['ISP', 'EthioNet'],
-          ].map(([title, adress]) => (
+          {title.map(([title, adress]) => (
             <div
               key={title}
               className="flex flex-col gap-2 md:px-8 md:gap-[.875rem] md:border-l-[1px]"
@@ -59,9 +92,9 @@ function App() {
           ))}
         </div>
       </div>
-      <MapContainer center={[48.8566, 2.3522]} zoom={18} className="h-screen">
+      <MapContainer center={[8.81667, 40.51667]} zoom={13} className="h-screen">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[48.8566, 2.3522]} icon={customIcon}>
+        <Marker position={[8.81667, 40.51667]} icon={customIcon}>
           <Popup>
             <p>This is your location</p>
           </Popup>
