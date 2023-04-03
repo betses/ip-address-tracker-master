@@ -39,6 +39,7 @@ function App() {
     ]);
 
     setLoc([jsonData.location.lat, jsonData.location.lng]);
+    console.log(loc);
   };
 
   useEffect(() => {
