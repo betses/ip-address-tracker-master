@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { Icon } from 'leaflet';
 import { useEffect } from 'react';
 import { useMap, Marker, Popup } from 'react-leaflet';

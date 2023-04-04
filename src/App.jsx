@@ -1,4 +1,3 @@
-import './App.css';
 import 'leaflet/dist/leaflet.css';
 import { useState, useEffect } from 'react';
 import Map from './Component/Map';
@@ -9,10 +8,10 @@ function App() {
 
   useEffect(() => {
     async function ipTracker() {
-      let res = await fetch(
-        `https://api.ipgeolocation.io/ipgeo?apiKey=4ac3c6e2417247d78a9b13c924dbf3ff&ip=${IP}`
+      const res = await fetch(
+        `https://api.ipgeolocation.io/ipgeo?apiKey=4ac3c6e2417247d78a9b13c924dbf3ff&ip=${IP}`,
       );
-      let data = await res.json();
+      const data = await res.json();
       setAdress(data);
     }
     ipTracker();
@@ -22,17 +21,15 @@ function App() {
     setIP(document.getElementById('text').value);
     document.getElementById('text').value = '';
   };
-  console.log(IP);
-  console.log(adress);
   return (
     <>
       {!(adress === null) && (
         <div>
           <div className="grid relative items-center justify-items-center z-[1000] w-full bg-no-repeat bg-center bg-mobileBG md:bg-desktopBG bg-cover">
             <div className="pt-[2.125rem] w-[calc(100%-3rem)] max-w-[34.688rem] text-center ms-auto me-auto mb-36 md:pt-[2.125rem]">
-              <label className="font-medium text-[clamp(1.625rem,1.3846rem+1.0256vw,2rem)] leading-5 text-white tracking-normal">
+              <p className="font-medium text-[clamp(1.625rem,1.3846rem+1.0256vw,2rem)] leading-5 text-white tracking-normal">
                 IP Address Tracker
-              </label>
+              </p>
               <div className="w-full flex mt-[1.875rem] mb-6">
                 <input
                   type="text"
@@ -58,7 +55,7 @@ function App() {
                       stroke="#FFF"
                       strokeWidth="3"
                       d="M2 1l6 6-6 6"
-                    ></path>
+                    />
                   </svg>
                 </button>
               </div>
@@ -77,7 +74,8 @@ function App() {
                   LOCATION
                 </h2>
                 <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8">
-                  {adress.country_capital}, {adress.country_name}
+                  {adress.country_capital}
+                  {adress.country_name}
                 </p>
               </div>
               <div className="flex flex-col gap-2 md:px-8 md:gap-[.875rem] md:border-l-[1px]">
