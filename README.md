@@ -27,8 +27,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./public/assets/ScreenshotDesk.png)
-![](./public/assets/screenshotMob.png)
+![](./src/assets/ScreenshotDesk.png)
+![](./src/assets/screenshotMob.png)
 
 ### Links
 
