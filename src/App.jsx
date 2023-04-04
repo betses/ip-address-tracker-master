@@ -24,10 +24,6 @@ function App() {
   };
   console.log(IP);
   console.log(adress);
-
-  let timeZone = adress.time_zone.current_time;
-  const timeArray = timeZone.split('');
-  console.log(timeArray);
   return (
     <>
       {!(adress === null) && (
