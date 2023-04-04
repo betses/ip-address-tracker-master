@@ -1,6 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import { useState, useEffect } from 'react';
 import Map from './Component/Map';
+import './App.css';
 
 function App() {
   const [IP, setIP] = useState('');
@@ -25,7 +26,7 @@ function App() {
     <>
       {!(adress === null) && (
         <div>
-          <div className="grid relative items-center justify-items-center z-[1000] w-full bg-no-repeat bg-center bg-mobileBG md:bg-desktopBG bg-cover">
+          <div className="bgImage grid relative items-center justify-items-center z-[1000] w-full bg-no-repeat bg-center bg-cover">
             <div className="pt-[2.125rem] w-[calc(100%-3rem)] max-w-[34.688rem] text-center ms-auto me-auto mb-36 md:pt-[2.125rem]">
               <p className="font-medium text-[clamp(1.625rem,1.3846rem+1.0256vw,2rem)] leading-5 text-white tracking-normal">
                 IP Address Tracker
