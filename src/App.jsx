@@ -66,15 +66,17 @@ function App() {
                 <h2 className="uppercase tracking-[1.46px] font-bold text-[clamp(.625rem,.5449rem+.3419vw,.75rem);] text-[#969696]">
                   IP ADDRESS
                 </h2>
-                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8">
-                  {adress.ip}
-                </p>
+                <div className="flex flex-wrap">
+                  <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8 break-all">
+                    {adress.ip}
+                  </p>
+                </div>
               </div>
               <div className="flex flex-col gap-2 md:px-8 md:gap-[.875rem] md:border-l-[1px]">
                 <h2 className="uppercase tracking-[1.46px] font-bold text-[clamp(.625rem,.5449rem+.3419vw,.75rem);] text-[#969696]">
                   LOCATION
                 </h2>
-                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8">
+                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8 ">
                   {adress.country_capital}
                   {adress.country_name}
                 </p>
@@ -83,7 +85,7 @@ function App() {
                 <h2 className="uppercase tracking-[1.46px] font-bold text-[clamp(.625rem,.5449rem+.3419vw,.75rem);] text-[#969696]">
                   TIME
                 </h2>
-                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8">
+                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8 break-all">
                   {adress.time_zone.current_time}
                 </p>
               </div>
@@ -91,7 +93,7 @@ function App() {
                 <h2 className="uppercase tracking-[1.46px] font-bold text-[clamp(.625rem,.5449rem+.3419vw,.75rem);] text-[#969696]">
                   ISP
                 </h2>
-                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8">
+                <p className="font-medium  text-[clamp(1.25rem,1.0096rem+1.0256vw,1.625rem);] leading-8 break-all">
                   {adress.isp}
                 </p>
               </div>
